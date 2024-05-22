@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingPage">
+
+
+    <TextView
+        android:id="@+id/SettingsTitleTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="47dp"
+        android:text="Settings"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/changeUserNameTV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/SavePasswordBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="86dp"
+        android:text="Save Password"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNewPassword" />
+
+    <TextView
+        android:id="@+id/changeUserNameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="13dp"
+        android:text="Update Username"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/etUserName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SettingsTitleTV" />
+
+    <TextView
+        android:id="@+id/changePasswordTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="20dp"
+        android:text="Current Password"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/etCurrentPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SaveUserNameBtn" />
+
+    <TextView
+        android:id="@+id/NewPasswordTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="15dp"
+        android:text="New Password"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/etNewPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCurrentPassword" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation_menu"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/etUserName"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="18dp"
+        android:ems="10"
+        android:hint="new username"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/SaveUserNameBtn"
+        app:layout_constraintEnd_toEndOf="@+id/etNewPassword"
+        app:layout_constraintStart_toStartOf="@+id/changeUserNameTV"
+        app:layout_constraintTop_toBottomOf="@+id/changeUserNameTV" />
+
+    <EditText
+        android:id="@+id/etCurrentPassword"
+        android:layout_width="190dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="14dp"
+        android:ems="10"
+        android:hint="enter current password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/NewPasswordTV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changePasswordTV" />
+
+    <EditText
+        android:id="@+id/etNewPassword"
+        android:layout_width="182dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="14dp"
+        android:ems="10"
+        android:hint="enter new password"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/SavePasswordBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NewPasswordTV" />
+
+    <Button
+        android:id="@+id/SaveUserNameBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="43dp"
+        android:text="Save Username"
+        app:layout_constraintBottom_toTopOf="@+id/changePasswordTV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etUserName" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
