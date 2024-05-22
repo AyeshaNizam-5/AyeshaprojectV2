@@ -11,10 +11,11 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="24dp"
         android:text="Play"
-        app:layout_constraintBaseline_toBaselineOf="@+id/pause_button"
-        app:layout_constraintStart_toEndOf="@+id/pause_button" />
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/pause_button"
@@ -22,11 +23,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/play_button"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="26dp"
+        android:layout_marginEnd="39dp"
         android:text="Pause"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/stop_button"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/stop_button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.905" />
 
     <Button
         android:id="@+id/stop_button"
@@ -34,19 +36,22 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/pause_button"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="36dp"
+        android:layout_marginStart="288dp"
+        android:layout_marginBottom="24dp"
         android:text="Stop"
-        app:layout_constraintBaseline_toBaselineOf="@+id/pause_button"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
         android:text="Select any song to play"
         android:textSize="24sp"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="39dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

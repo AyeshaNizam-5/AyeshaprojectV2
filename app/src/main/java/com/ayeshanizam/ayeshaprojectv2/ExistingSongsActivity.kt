@@ -6,20 +6,28 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.ayeshanizam.ayeshaprojectv2.databinding.ActivityExistingSongsBinding
 import com.ayeshanizam.ayeshaprojectv2.songsDB.SongTrackEntity
+import com.ayeshanizam.ayeshaprojectv2.songsDB.localSong
 import java.util.Collections
 
 class ExistingSongsActivity : AppCompatActivity() {
     lateinit var binding: ActivityExistingSongsBinding
     private lateinit var mediaPlayer: MediaPlayer
-    var existingSonglist: ArrayList<SongTrackEntity> = ArrayList()
+    var existingSonglist: ArrayList<localSong> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExistingSongsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //mediaPlayer = MediaPlayer.create(this, R.raw);
+        mediaPlayer = MediaPlayer.create(this, R.raw.countingstars);
 
 
+
+
+
+
+
+
+// these following accesses the bottom navigation bar and changes from one page to another
         binding.bottomNavigation.setOnItemSelectedListener {
             try {
                 when (it.itemId) {
@@ -54,14 +62,15 @@ class ExistingSongsActivity : AppCompatActivity() {
 
     }
 
+    // creating list for the local songs that can be played.
     fun preparedata(){
-        existingSonglist =ArrayList<SongTrackEntity>()
-        //Collections.addAll(existingSonglist,
-//            Customer(148, "veli", "korkmaz", 200.0),
-//            Customer(897, "ali", "candan", 150.0),
-//            Customer(333, "zeynep", "aydogmus", 100.0))
+        existingSonglist =ArrayList<localSong>()
+        Collections.addAll(existingSonglist,
+            localSong("Demons","Imagine Dragond",R.raw.demons),
+            localSong("Counting Stars","One Republic",R.raw.countingstars),
+            localSong("Demons","Imagine Dragond",R.raw.demons),
+            localSong("Pehli Dafa","Atif Aslam",R.raw.pehlidafa),
+            localSong("Blank Space","Taylor Swift",R.raw.demons))
     }
-
-
 
 }
