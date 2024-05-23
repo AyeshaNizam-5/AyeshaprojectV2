@@ -15,7 +15,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ayeshanizam.ayeshaprojectv2.adapter.CustomRecyclerViewAdapter
 import com.ayeshanizam.ayeshaprojectv2.auth.LoginActivity
-import com.ayeshanizam.ayeshaprojectv2.songsDB.SongTrack
 import com.ayeshanizam.ayeshaprojectv2.songsDB.SongTrackEntity
 import com.ayeshanizam.ayeshaprojectv2.songsDB.SongViewModel
 import retrofit2.Call
@@ -120,9 +119,9 @@ class MainActivity : AppCompatActivity(),CustomRecyclerViewAdapter.ICustomInterf
         })
     }
 
-    override fun itemSelectedWithLongClick(item: SongTrackEntity) {
+    override fun selectSearcheditem(item: SongTrackEntity) {
         songViewModel.addSong(item)
-        Toast.makeText(this@MainActivity, item.toString(), Toast.LENGTH_LONG).show()
+        Toast.makeText(this@MainActivity, "Selected searched song has been added to db", Toast.LENGTH_LONG).show()
     }
 //------------------------------------------------------
 

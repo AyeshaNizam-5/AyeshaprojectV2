@@ -4,17 +4,20 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ayeshanizam.ayeshaprojectv2.R
 import com.ayeshanizam.ayeshaprojectv2.songsDB.SongTrackEntity
+import com.ayeshanizam.ayeshaprojectv2.songsDB.localSong
 
 
 class CustomRecyclerViewAdapter(private val context: Context):RecyclerView.Adapter<CustomRecyclerViewAdapter.RecyclerViewItemHolder>() {
     private var recyclerItemValues = emptyList<SongTrackEntity>()
     interface ICustomInterface{
-        fun itemSelectedWithLongClick(item:SongTrackEntity)
+        fun selectSearcheditem(item: SongTrackEntity)
+
     }
     lateinit var iCustomInterface:ICustomInterface
 
@@ -28,7 +31,7 @@ class CustomRecyclerViewAdapter(private val context: Context):RecyclerView.Adapt
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): RecyclerViewItemHolder {
         val inflator = LayoutInflater.from(viewGroup.context)
-        val itemView: View = inflator.inflate(R.layout.item_layout, viewGroup, false)
+        val itemView: View = inflator.inflate(R.layout.recycler_item, viewGroup, false)
         return RecyclerViewItemHolder(itemView)
     }
 
@@ -37,8 +40,8 @@ class CustomRecyclerViewAdapter(private val context: Context):RecyclerView.Adapt
         myRecyclerViewItemHolder.songNameSearchTV.text = item.titleName
         myRecyclerViewItemHolder.artistNameSearchTV .text = item.artistName
 
-        myRecyclerViewItemHolder.parentLayout.setOnLongClickListener {
-            iCustomInterface.itemSelectedWithLongClick(item)
+        myRecyclerViewItemHolder.parentLayout.setOnClickListener {
+            iCustomInterface.selectSearcheditem(item)
             true
         }
     }
@@ -53,9 +56,9 @@ class CustomRecyclerViewAdapter(private val context: Context):RecyclerView.Adapt
         lateinit var songNameSearchTV: TextView
 
         init {
-            parentLayout = itemView.findViewById(R.id.itemLayout)
-            artistNameSearchTV = itemView.findViewById(R.id.artistNameSearchTV)
-            songNameSearchTV = itemView.findViewById(R.id.songNameSearchTV)
+            parentLayout = itemView.findViewById(R.id.itemRecycler)
+            artistNameSearchTV = itemView.findViewById(R.id.artistNameRetrofitTV)
+            songNameSearchTV = itemView.findViewById(R.id.songNameRetrofitTV)
 
         }
     }

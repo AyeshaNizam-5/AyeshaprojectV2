@@ -65,9 +65,7 @@ class ExistingSongsActivity : AppCompatActivity(), localSongsAdapter.ICustomInte
         )
     }
 
-    override fun itemSelectedWithLongClick(item: localSong) {
-        Toast.makeText(this, "You have long clicked an item in the recycler view", Toast.LENGTH_LONG).show()
-    }
+
 
     override fun onPlayPauseClick(item: localSong, position: Int, playPauseButton: ImageButton) {
         if (mediaPlayer?.isPlaying == true && currentPlayingPosition == position) {

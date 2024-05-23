@@ -15,7 +15,6 @@ class localSongsAdapter(private val context: Context) : RecyclerView.Adapter<loc
     private var recyclerItemValues = emptyList<localSong>()
 
     interface ICustomInterface {
-        fun itemSelectedWithLongClick(item: localSong)
         fun onPlayPauseClick(item: localSong, position: Int, playPauseButton: ImageButton)
     }
 
@@ -45,10 +44,7 @@ class localSongsAdapter(private val context: Context) : RecyclerView.Adapter<loc
             iCustomInterface.onPlayPauseClick(item, position, myRecyclerViewItemHolder.playPauseButton)
         }
 
-        myRecyclerViewItemHolder.parentLayout.setOnLongClickListener {
-            iCustomInterface.itemSelectedWithLongClick(item)
-            true
-        }
+
     }
 
     override fun getItemCount(): Int {
