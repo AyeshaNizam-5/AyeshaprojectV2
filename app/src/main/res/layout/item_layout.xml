@@ -3,20 +3,20 @@
     android:id="@+id/itemLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="6dp"
     android:background="#CBF3F8"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/songNameSearchTV"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:textSize="16sp" />
 
     <TextView
         android:id="@+id/artistNameSearchTV"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:textSize="16sp" />
 
 </LinearLayout>

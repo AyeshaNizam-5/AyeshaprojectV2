@@ -4,22 +4,47 @@ import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.ayeshanizam.ayeshaprojectv2.adapter.localSongsAdapter
 import com.ayeshanizam.ayeshaprojectv2.databinding.ActivityExistingSongsBinding
-import com.ayeshanizam.ayeshaprojectv2.songsDB.SongTrackEntity
+import com.ayeshanizam.ayeshaprojectv2.songsDB.localSong
 import java.util.Collections
 
-class ExistingSongsActivity : AppCompatActivity() {
+class ExistingSongsActivity : AppCompatActivity() , localSongsAdapter.ICustomInterface{
     lateinit var binding: ActivityExistingSongsBinding
-    private lateinit var mediaPlayer: MediaPlayer
-    var existingSonglist: ArrayList<SongTrackEntity> = ArrayList()
+    lateinit var mediaPlayer: MediaPlayer
+    lateinit var adapter: localSongsAdapter
+    var existingSonglist: ArrayList<localSong> = ArrayList()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExistingSongsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //mediaPlayer = MediaPlayer.create(this, R.raw);
+        preparedata()
+
+        adapter = localSongsAdapter(this)
+        binding.localSongsRecyclerView.setLayoutManager(LinearLayoutManager(this))
+        binding.localSongsRecyclerView.adapter = adapter
+        adapter.setData(existingSonglist)
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.countingstars);
+
+        binding.fabPlay.setOnClickListener {
+            mediaPlayer.start()
+        }
+        binding.fabStop.setOnClickListener {
+            if (mediaPlayer != null) {
+                mediaPlayer.stop();
+                mediaPlayer.release();
+                mediaPlayer = MediaPlayer.create(this, R.raw.countingstars);
+
+            }
+        }
 
 
+// these following accesses the bottom navigation bar and changes from one page to another
         binding.bottomNavigation.setOnItemSelectedListener {
             try {
                 when (it.itemId) {
@@ -54,14 +79,22 @@ class ExistingSongsActivity : AppCompatActivity() {
 
     }
 
+    // creating list for the local songs that can be played.
     fun preparedata(){
-        existingSonglist =ArrayList<SongTrackEntity>()
-        //Collections.addAll(existingSonglist,
-//            Customer(148, "veli", "korkmaz", 200.0),
-//            Customer(897, "ali", "candan", 150.0),
-//            Customer(333, "zeynep", "aydogmus", 100.0))
+        existingSonglist =ArrayList<localSong>()
+        Collections.addAll(existingSonglist,
+            localSong("Demons","Imagine Dragond",R.raw.demons),
+            localSong("Counting Stars","One Republic",R.raw.countingstars),
+            localSong("My Demons","Starset",R.raw.mydemons),
+            localSong("Pehli Dafa","Atif Aslam",R.raw.pehlidafa),
+            localSong("Blank Space","Taylor Swift",R.raw.blankspace),
+            localSong("Castle on the Hill","Ed Sheeran",R.raw.castleonthehill),
+            localSong("Blank Space","One Republic",R.raw.iaintworried)
+        )
     }
 
-
+    override fun itemSelectedWithLongClick(item: localSong) {
+        Toast.makeText(this,"you have long clicked an item in recycler view", Toast.LENGTH_LONG).show()
+    }
 
 }
