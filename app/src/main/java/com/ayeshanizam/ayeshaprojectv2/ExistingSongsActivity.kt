@@ -3,8 +3,9 @@ package com.ayeshanizam.ayeshaprojectv2
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.util.Log
+import android.view.GestureDetector
 import android.widget.ImageButton
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -12,6 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ayeshanizam.ayeshaprojectv2.adapter.localSongsAdapter
 import com.ayeshanizam.ayeshaprojectv2.databinding.ActivityExistingSongsBinding
 import com.ayeshanizam.ayeshaprojectv2.songsDB.localSong
+import android.view.GestureDetector.SimpleOnGestureListener
+import android.view.MotionEvent
+import androidx.core.view.GestureDetectorCompat
 
 class ExistingSongsActivity : AppCompatActivity(), localSongsAdapter.ICustomInterface {
     private lateinit var binding: ActivityExistingSongsBinding
@@ -24,6 +28,8 @@ class ExistingSongsActivity : AppCompatActivity(), localSongsAdapter.ICustomInte
     lateinit var fm: FragmentManager
     lateinit var ft: FragmentTransaction
 
+    var gDetector: GestureDetectorCompat? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExistingSongsBinding.inflate(layoutInflater)
@@ -35,7 +41,36 @@ class ExistingSongsActivity : AppCompatActivity(), localSongsAdapter.ICustomInte
         binding.localSongsRecyclerView.adapter = adapter
         adapter.setData(existingSongList)
 
+        gDetector =  GestureDetectorCompat(this, CustomGesture())
+        gDetector?.setOnDoubleTapListener(CustomGesture())
 
+
+    }
+
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        gDetector?.onTouchEvent(event)
+        return super.onTouchEvent(event)
+    }
+
+    inner class CustomGesture: GestureDetector.SimpleOnGestureListener() {
+        override fun onLongPress(e: MotionEvent) {
+
+        }
+
+        override fun onFling(
+            e1: MotionEvent?,
+            e2: MotionEvent,
+            velocityX: Float,
+            velocityY: Float
+        ): Boolean {
+            val intent = Intent(this@ExistingSongsActivity, MainActivity::class.java)
+            startActivity(intent)
+            return false
+        }
+        override fun onDoubleTapEvent(e: MotionEvent): Boolean {
+
+            return true
+        }
     }
 
     private fun prepareData() {
