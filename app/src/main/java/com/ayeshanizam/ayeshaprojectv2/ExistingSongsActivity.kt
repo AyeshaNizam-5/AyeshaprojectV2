@@ -13,9 +13,10 @@ import java.util.Collections
 
 class ExistingSongsActivity : AppCompatActivity() , localSongsAdapter.ICustomInterface{
     lateinit var binding: ActivityExistingSongsBinding
-    lateinit var mediaPlayer: MediaPlayer
+     var mediaPlayer: MediaPlayer? = null
     lateinit var adapter: localSongsAdapter
     var existingSonglist: ArrayList<localSong> = ArrayList()
+    var selectedSong : localSong? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,17 +30,34 @@ class ExistingSongsActivity : AppCompatActivity() , localSongsAdapter.ICustomInt
         binding.localSongsRecyclerView.adapter = adapter
         adapter.setData(existingSonglist)
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.countingstars);
+
 
         binding.fabPlay.setOnClickListener {
-            mediaPlayer.start()
+            if(selectedSong == null){
+                Toast.makeText(this,"you have to select a song first to play", Toast.LENGTH_LONG).show()
+            }
+            else{
+                mediaPlayer = MediaPlayer.create(this, selectedSong!!.songlink);
+                mediaPlayer?.start()
+            }
+
         }
         binding.fabStop.setOnClickListener {
-            if (mediaPlayer != null) {
-                mediaPlayer.stop();
-                mediaPlayer.release();
-                mediaPlayer = MediaPlayer.create(this, R.raw.countingstars);
+            if (mediaPlayer !== null && mediaPlayer!!.isPlaying() ) {
+                mediaPlayer!!.stop();
+                mediaPlayer!!.release();
+            }
+        }
 
+        binding.fabPause.setOnClickListener{
+            var pausePosition: Int = 0
+            if( mediaPlayer != null && mediaPlayer!!.isPlaying()){
+                mediaPlayer!!.pause()
+                pausePosition = mediaPlayer!!.currentPosition
+            }
+            else {
+                mediaPlayer?.seekTo(pausePosition);
+                mediaPlayer?.start();
             }
         }
 
@@ -83,7 +101,7 @@ class ExistingSongsActivity : AppCompatActivity() , localSongsAdapter.ICustomInt
     fun preparedata(){
         existingSonglist =ArrayList<localSong>()
         Collections.addAll(existingSonglist,
-            localSong("Demons","Imagine Dragond",R.raw.demons),
+            localSong("Demons","Imagine Dragons",R.raw.demons),
             localSong("Counting Stars","One Republic",R.raw.countingstars),
             localSong("My Demons","Starset",R.raw.mydemons),
             localSong("Pehli Dafa","Atif Aslam",R.raw.pehlidafa),
@@ -94,6 +112,8 @@ class ExistingSongsActivity : AppCompatActivity() , localSongsAdapter.ICustomInt
     }
 
     override fun itemSelectedWithLongClick(item: localSong) {
+        selectedSong = item
+        binding.selectedSongTV.text = item.toString()
         Toast.makeText(this,"you have long clicked an item in recycler view", Toast.LENGTH_LONG).show()
     }
 

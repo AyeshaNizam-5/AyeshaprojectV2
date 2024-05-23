@@ -23,11 +23,10 @@
         style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="3dp"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/selectedSongTV"
         app:menu="@menu/bottom_navigation_menu"
         tools:ignore="MissingConstraints" />
 
@@ -36,13 +35,13 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="39dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/selectedSongTV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/selectedSongTV"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginBottom="154dp"
