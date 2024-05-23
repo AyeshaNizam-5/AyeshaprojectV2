@@ -9,11 +9,7 @@
         android:enabled="true"
         android:icon="@drawable/favorite"
         android:title="library"/>
-    <item
-        android:id="@+id/searchNavbtn"
-        android:enabled="true"
-        android:icon="@drawable/search"
-        android:title="search"/>
+
     <item
         android:id="@+id/settingsNavbtn"
         android:enabled="true"
