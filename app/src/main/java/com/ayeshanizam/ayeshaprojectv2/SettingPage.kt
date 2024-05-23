@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.ayeshanizam.ayeshaprojectv2.R
+import com.ayeshanizam.ayeshaprojectv2.auth.LoginActivity
 import com.ayeshanizam.ayeshaprojectv2.constants.Constants
 import com.ayeshanizam.ayeshaprojectv2.databinding.ActivitySettingPageBinding
 
@@ -36,6 +37,14 @@ class SettingPage : AppCompatActivity() {
 
         }
 
+        binding.logoutBtn.setOnClickListener {
+            val editor = sharedpreferences.edit();
+            editor.clear();
+            editor.apply();
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
         binding.SavePasswordBtn.setOnClickListener {
             val currentPass = binding.etCurrentPassword.text.toString()
             val usernameSize =binding.etUserName.text.toString().length
