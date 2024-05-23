@@ -10,10 +10,10 @@
 
     <EditText
         android:id="@+id/etSearchBar"
-        android:layout_width="301dp"
-        android:layout_height="33dp"
+        android:layout_width="272dp"
+        android:layout_height="36dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="21dp"
+        android:layout_marginEnd="19dp"
         android:layout_marginBottom="17dp"
         android:hint="Search for music info"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
@@ -26,12 +26,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="1dp"
         android:text="Search"
-        app:layout_constraintBottom_toTopOf="@+id/searchedSongsRecycler"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/etSearchBar"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchedSongsRecycler"
@@ -39,7 +37,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="9dp"
         android:layout_marginEnd="9dp"
-        android:layout_marginBottom="33dp"
+        android:layout_marginBottom="34dp"
         android:background="@drawable/border"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,12 +48,50 @@
         android:id="@+id/btnStartService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="27dp"
+        android:layout_marginBottom="83dp"
         android:text="Start Background Activities"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_fragment"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topArtistsRecycler" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/topArtistsRecycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="17dp"
+        android:background="@drawable/border"
+        app:layout_constraintBottom_toTopOf="@+id/btnStartService"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="128dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="30dp"
+        android:text="Top Artists"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/topArtistsRecycler"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchedSongsRecycler" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="109dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="3dp"
+        android:text="Search Results"
+        app:layout_constraintBottom_toTopOf="@+id/searchedSongsRecycler"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etSearchBar" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/bottom_navigation_fragment"
@@ -65,8 +101,7 @@
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnStartService" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
