@@ -8,6 +8,7 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.ayeshanizam.ayeshaprojectv2.ApiServices.Artist
 import com.ayeshanizam.ayeshaprojectv2.R
 import com.ayeshanizam.ayeshaprojectv2.songsDB.SongTrackEntity
 import com.ayeshanizam.ayeshaprojectv2.songsDB.localSong
@@ -24,7 +25,7 @@ class CustomRecyclerViewAdapter(private val context: Context):RecyclerView.Adapt
     init {
         iCustomInterface = context as ICustomInterface
     }
-    fun setData(items:List<SongTrackEntity>){
+    fun setData(items: List<SongTrackEntity>){
         recyclerItemValues = items
         notifyDataSetChanged()
     }

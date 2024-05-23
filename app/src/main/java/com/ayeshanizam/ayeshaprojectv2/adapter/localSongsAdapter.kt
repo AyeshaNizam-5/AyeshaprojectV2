@@ -41,7 +41,6 @@ class localSongsAdapter(private val context: Context) : RecyclerView.Adapter<loc
         myRecyclerViewItemHolder.songNameSearchTV.text = item.name
         myRecyclerViewItemHolder.artistNameSearchTV.text = item.artist
 
-        // Update the play/pause button based on the current playing position
         if (playingPosition == position) {
             myRecyclerViewItemHolder.playPauseButton.setImageResource(android.R.drawable.ic_media_pause) // Set to pause icon
         } else {

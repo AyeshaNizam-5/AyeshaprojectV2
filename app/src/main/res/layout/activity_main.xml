@@ -10,20 +10,23 @@
 
     <EditText
         android:id="@+id/etSearchBar"
-        android:layout_width="290dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="301dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginBottom="17dp"
         android:hint="Search for music info"
-        app:layout_constraintBaseline_toBaselineOf="@+id/topsearchBtn"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toStartOf="@+id/topsearchBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/topsearchBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="1dp"
         android:text="Search"
         app:layout_constraintBottom_toTopOf="@+id/searchedSongsRecycler"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,17 +37,20 @@
         android:id="@+id/searchedSongsRecycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnStartService"
+        android:layout_marginStart="9dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="33dp"
+        android:background="@drawable/border"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topsearchBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
         android:id="@+id/btnStartService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="61dp"
+        android:layout_marginBottom="27dp"
         android:text="Start Background Activities"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_fragment"
         app:layout_constraintEnd_toEndOf="parent"
