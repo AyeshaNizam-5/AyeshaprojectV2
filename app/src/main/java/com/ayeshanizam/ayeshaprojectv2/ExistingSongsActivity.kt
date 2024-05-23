@@ -72,7 +72,7 @@ class ExistingSongsActivity : AppCompatActivity(), localSongsAdapter.ICustomInte
     override fun onPlayPauseClick(item: localSong, position: Int, playPauseButton: ImageButton) {
         if (mediaPlayer?.isPlaying == true && currentPlayingPosition == position) {
             mediaPlayer?.pause()
-            playPauseButton.setImageResource(android.R.drawable.ic_media_play)
+            playPauseButton.setImageResource(android.R.drawable.ic_media_pause)
         } else {
             mediaPlayer?.release()
             mediaPlayer = MediaPlayer.create(this, item.songlink)
