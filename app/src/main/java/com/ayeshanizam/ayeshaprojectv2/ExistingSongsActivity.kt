@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ayeshanizam.ayeshaprojectv2.adapter.localSongsAdapter
 import com.ayeshanizam.ayeshaprojectv2.databinding.ActivityExistingSongsBinding
@@ -18,6 +20,10 @@ class ExistingSongsActivity : AppCompatActivity(), localSongsAdapter.ICustomInte
     private var mediaPlayer: MediaPlayer? = null
     private var currentPlayingPosition: Int = -1
 
+    lateinit var bottomFragment : BottomFragment
+    lateinit var fm: FragmentManager
+    lateinit var ft: FragmentTransaction
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExistingSongsBinding.inflate(layoutInflater)
@@ -29,28 +35,7 @@ class ExistingSongsActivity : AppCompatActivity(), localSongsAdapter.ICustomInte
         binding.localSongsRecyclerView.adapter = adapter
         adapter.setData(existingSongList)
 
-        binding.bottomNavigation.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.settingsNavbtn -> {
-                    val intent = Intent(this, SettingPage::class.java)
-                    startActivity(intent)
-                    true
-                }
-                R.id.homeNavbtn -> {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                    true
-                }
-                R.id.favouritesNavbtn -> {
-                    val intent = Intent(this, ExistingSongsActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                    true
-                }
-                else -> true
-            }
-        }
+
     }
 
     private fun prepareData() {

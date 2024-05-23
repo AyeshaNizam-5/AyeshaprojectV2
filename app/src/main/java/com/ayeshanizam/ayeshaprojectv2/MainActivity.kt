@@ -1,24 +1,20 @@
 package com.ayeshanizam.ayeshaprojectv2
 
-import android.app.NotificationManager
+
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.media.MediaPlayer
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import com.ayeshanizam.ayeshaprojectv2.R
 import com.ayeshanizam.ayeshaprojectv2.databinding.ActivityMainBinding
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.work.BackoffPolicy
-
 import androidx.work.Data
-import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
@@ -43,9 +39,11 @@ class MainActivity : AppCompatActivity(),CustomRecyclerViewAdapter.ICustomInterf
     private lateinit var mediaPlayer: MediaPlayer
     var songlist: ArrayList<SongTrackEntity> = ArrayList()
     lateinit var songUrl:String
-
-
     lateinit var workManager: WorkManager
+
+    lateinit var bottomFragment : BottomFragment
+    lateinit var fm: FragmentManager
+    lateinit var ft: FragmentTransaction
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -101,32 +99,6 @@ class MainActivity : AppCompatActivity(),CustomRecyclerViewAdapter.ICustomInterf
 
         }
 
-        // this is for accessing the bottom navigation bar and changing pages
-        binding.bottomNavigation.setOnItemSelectedListener {
-            try {
-                when (it.itemId) {
-                    R.id.settingsNavbtn -> {
-                        val intent = Intent(this, SettingPage::class.java)
-                        startActivity(intent)
-                        true
-                    }
-
-                    R.id.favouritesNavbtn -> {
-                        val intent = Intent(this, ExistingSongsActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                        true
-                    }
-
-                    else -> {
-                        true
-                    }
-                }
-            } catch (e: Exception) {
-                throw e
-            }
-        }
-
 
     }
 //--function used to search songs using retrofit and add them to songlist Arraylist----------------------------------------------------
@@ -166,3 +138,5 @@ class MainActivity : AppCompatActivity(),CustomRecyclerViewAdapter.ICustomInterf
 //------------------------------------------------------
 
 }
+
+

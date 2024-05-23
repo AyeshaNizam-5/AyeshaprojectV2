@@ -12,56 +12,55 @@
         android:id="@+id/etSearchBar"
         android:layout_width="290dp"
         android:layout_height="50dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginStart="16dp"
         android:hint="Search for music info"
-        app:layout_constraintEnd_toStartOf="@+id/topsearchBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/topsearchBtn"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
     <Button
         android:id="@+id/topsearchBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="16dp"
         android:text="Search"
+        app:layout_constraintBottom_toTopOf="@+id/searchedSongsRecycler"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/etSearchBar"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/material_dynamic_primary40"
-        app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_navigation_menu"
-        tools:ignore="MissingConstraints" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchedSongsRecycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="56dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnStartService"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etSearchBar" />
+        app:layout_constraintTop_toBottomOf="@+id/topsearchBtn" />
 
     <Button
         android:id="@+id/btnStartService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="61dp"
         android:text="Start Background Activities"
-        tools:layout_editor_absoluteX="298dp"
-        tools:layout_editor_absoluteY="580dp" />
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchedSongsRecycler" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/bottom_navigation_fragment"
+        android:name="com.ayeshanizam.ayeshaprojectv2.BottomFragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnStartService" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
