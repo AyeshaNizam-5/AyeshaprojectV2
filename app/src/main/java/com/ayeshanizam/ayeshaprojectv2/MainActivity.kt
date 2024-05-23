@@ -10,11 +10,12 @@ import android.os.Bundle
 import android.util.Log
 import com.ayeshanizam.ayeshaprojectv2.databinding.ActivityMainBinding
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import androidx.work.Data
-import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkInfo
 import androidx.work.WorkManager
@@ -51,6 +52,10 @@ class MainActivity : AppCompatActivity(),CustomRecyclerViewAdapter.ICustomInterf
 
 
     lateinit var workManager: WorkManager
+
+    lateinit var bottomFragment : BottomFragment
+    lateinit var fm: FragmentManager
+    lateinit var ft: FragmentTransaction
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,32 +114,6 @@ class MainActivity : AppCompatActivity(),CustomRecyclerViewAdapter.ICustomInterf
                 searchTracks(query)
             }
 
-        }
-
-        // this is for accessing the bottom navigation bar and changing pages
-        binding.bottomNavigation.setOnItemSelectedListener {
-            try {
-                when (it.itemId) {
-                    R.id.settingsNavbtn -> {
-                        val intent = Intent(this, SettingPage::class.java)
-                        startActivity(intent)
-                        true
-                    }
-
-                    R.id.favouritesNavbtn -> {
-                        val intent = Intent(this, ExistingSongsActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                        true
-                    }
-
-                    else -> {
-                        true
-                    }
-                }
-            } catch (e: Exception) {
-                throw e
-            }
         }
 
 
@@ -204,3 +183,5 @@ class MainActivity : AppCompatActivity(),CustomRecyclerViewAdapter.ICustomInterf
 //------------------------------------------------------
 
 }
+
+

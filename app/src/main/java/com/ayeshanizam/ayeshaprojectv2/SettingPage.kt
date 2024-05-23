@@ -6,6 +6,8 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.ayeshanizam.ayeshaprojectv2.R
 import com.ayeshanizam.ayeshaprojectv2.auth.LoginActivity
 import com.ayeshanizam.ayeshaprojectv2.constants.Constants
@@ -17,6 +19,9 @@ class SettingPage : AppCompatActivity() {
     lateinit var binding: ActivitySettingPageBinding;
     lateinit var sharedpreferences: SharedPreferences
     lateinit var userdb : UserRoomDatabase
+    lateinit var bottomFragment : BottomFragment
+    lateinit var fm: FragmentManager
+    lateinit var ft: FragmentTransaction
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingPageBinding.inflate(layoutInflater)
@@ -35,15 +40,15 @@ class SettingPage : AppCompatActivity() {
         binding.SavePasswordBtn.setOnClickListener {
             val username = sharedpreferences.getString(Constants.USERNAME_KEY, "")
             val user = userdb.userDao().getUser(username.toString())
-            if(binding.etCurrentPassword.text.toString() == "" || binding.etNewPassword.text.toString() == ""){
+            if (binding.etCurrentPassword.text.toString() == "" || binding.etNewPassword.text.toString() == "") {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            if(user.toString().isNullOrEmpty()){
+            if (user.toString().isNullOrEmpty()) {
                 Toast.makeText(this, "User not found", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            if(user?.password != binding.etCurrentPassword.text.toString()){
+            if (user?.password != binding.etCurrentPassword.text.toString()) {
                 Toast.makeText(this, "Current password is incorrect", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -55,35 +60,6 @@ class SettingPage : AppCompatActivity() {
         }
 
 
-        // this is for accessing the bottom navigation bar and changing pages
-        binding.bottomNavigation.setOnItemSelectedListener {
-            try {
-                when (it.itemId) {
-                    R.id.settingsNavbtn -> {
-                        val intent = Intent(this, SettingPage::class.java)
-                        startActivity(intent)
-                        true
-                    }
-                    R.id.homeNavbtn -> {
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                        true
-                    }
-                    R.id.favouritesNavbtn -> {
-                        val intent = Intent(this, ExistingSongsActivity::class.java)
-                        startActivity(intent)
-                        finish()
-                        true
-                    }
-                    else -> {
-                        true
-                    }
-                }
-            } catch (e: Exception) {
-                throw e
-            }
-        }
     }
 
 

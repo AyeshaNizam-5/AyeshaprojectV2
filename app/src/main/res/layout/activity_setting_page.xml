@@ -89,17 +89,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
-        android:layout_width="wrap_content"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/bottom_navigation_fragment"
+        android:name="com.ayeshanizam.ayeshaprojectv2.BottomFragment"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/material_dynamic_primary40"
-        app:labelVisibilityMode="labeled"
+        android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_navigation_menu"
-        tools:ignore="MissingConstraints" />
+         />
 
     <Button
         android:id="@+id/logoutBtn"
