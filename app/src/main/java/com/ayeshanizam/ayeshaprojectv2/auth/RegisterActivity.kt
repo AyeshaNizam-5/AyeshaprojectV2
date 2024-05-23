@@ -65,7 +65,7 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
-        if(userdb.userDao().getUser(username) != null || userdb.userDao().getUser(username)!!.userName == username){
+        if( userdb.userDao().getUser(username)?.userName == username){
             usernameEditText.error = "Username already exists"
             return
         }
