@@ -1,5 +1,6 @@
 package com.ayeshanizam.ayeshaprojectv2
 
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -8,18 +9,29 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.ayeshanizam.ayeshaprojectv2.R
 import com.ayeshanizam.ayeshaprojectv2.databinding.ActivityMainBinding
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.work.BackoffPolicy
+
+import androidx.work.Data
+import androidx.work.NetworkType
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkInfo
+import androidx.work.WorkManager
 import com.ayeshanizam.ayeshaprojectv2.adapter.CustomRecyclerViewAdapter
 import com.ayeshanizam.ayeshaprojectv2.auth.LoginActivity
+import com.ayeshanizam.ayeshaprojectv2.serviceImplement.CustomWorker
 import com.ayeshanizam.ayeshaprojectv2.songsDB.SongTrackEntity
 import com.ayeshanizam.ayeshaprojectv2.songsDB.SongViewModel
+import androidx.lifecycle.Observer
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Callback
+
 
 class MainActivity : AppCompatActivity(),CustomRecyclerViewAdapter.ICustomInterface {
 
@@ -33,11 +45,39 @@ class MainActivity : AppCompatActivity(),CustomRecyclerViewAdapter.ICustomInterf
     lateinit var songUrl:String
 
 
+    lateinit var workManager: WorkManager
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val sharedPrefCurrent = getSharedPreferences(com.ayeshanizam.ayeshaprojectv2.constants.Constants.SHARED_PREFS, Context.MODE_PRIVATE)
+        val usernameCurrent = sharedPrefCurrent.getString(com.ayeshanizam.ayeshaprojectv2.constants.Constants.USERNAME_KEY, "")
+
+        //Service implementation#
+        workManager = WorkManager.getInstance(this)
+        binding.btnStartService.setOnClickListener {
+            val username = usernameCurrent;
+            val workRequest = OneTimeWorkRequest.Builder(CustomWorker::class.java)
+                .setInputData(Data.Builder()
+                    .putString("username", username)
+                    .build())
+                .build()
+
+            workManager.enqueue(workRequest)
+            Toast.makeText(this, "Work Request Enqueued", Toast.LENGTH_SHORT).show()
+
+            workManager.getWorkInfoByIdLiveData(workRequest.id).observe(this, Observer { workInfo ->
+                if (workInfo != null && workInfo.state == WorkInfo.State.SUCCEEDED) {
+                    Toast.makeText(this, "Work Succeeded! Notification launched", Toast.LENGTH_LONG).show()
+                }
+            })
+        }
+
+        //End of service implementation
+
 
         //check if username exists in shared preferences
         val sharedPref = getSharedPreferences(com.ayeshanizam.ayeshaprojectv2.constants.Constants.SHARED_PREFS, Context.MODE_PRIVATE)
