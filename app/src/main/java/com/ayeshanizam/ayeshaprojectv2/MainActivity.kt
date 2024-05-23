@@ -1,5 +1,6 @@
 package com.ayeshanizam.ayeshaprojectv2
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.media.MediaPlayer
@@ -13,6 +14,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ayeshanizam.ayeshaprojectv2.adapter.CustomRecyclerViewAdapter
+import com.ayeshanizam.ayeshaprojectv2.auth.LoginActivity
 import com.ayeshanizam.ayeshaprojectv2.songsDB.SongTrack
 import com.ayeshanizam.ayeshaprojectv2.songsDB.SongTrackEntity
 import com.ayeshanizam.ayeshaprojectv2.songsDB.SongViewModel
@@ -37,6 +39,15 @@ class MainActivity : AppCompatActivity(),CustomRecyclerViewAdapter.ICustomInterf
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //check if username exists in shared preferences
+        val sharedPref = getSharedPreferences(com.ayeshanizam.ayeshaprojectv2.constants.Constants.SHARED_PREFS, Context.MODE_PRIVATE)
+        val username = sharedPref.getString(com.ayeshanizam.ayeshaprojectv2.constants.Constants.USERNAME_KEY, "")
+        if (username.isNullOrEmpty()) {
+            val intent = Intent(this, LoginActivity::class.java )
+            startActivity(intent)
+            finish()
+        }
         songViewModel = ViewModelProvider(this).get(SongViewModel::class.java)
         adapter = CustomRecyclerViewAdapter(this)
         binding.searchedSongsRecycler.setLayoutManager(LinearLayoutManager(this))
