@@ -4,25 +4,28 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ayeshanizam.ayeshaprojectv2.R
-import com.ayeshanizam.ayeshaprojectv2.songsDB.SongTrackEntity
 import com.ayeshanizam.ayeshaprojectv2.songsDB.localSong
 
-
-class localSongsAdapter(private val context: Context):RecyclerView.Adapter<localSongsAdapter.RecyclerViewItemHolder>() {
+class localSongsAdapter(private val context: Context) : RecyclerView.Adapter<localSongsAdapter.RecyclerViewItemHolder>() {
     private var recyclerItemValues = emptyList<localSong>()
-    interface ICustomInterface{
-        fun itemSelectedWithLongClick(item:localSong)
+
+    interface ICustomInterface {
+        fun itemSelectedWithLongClick(item: localSong)
+        fun onPlayPauseClick(item: localSong, position: Int, playPauseButton: ImageButton)
     }
-    lateinit var iCustomInterface:ICustomInterface
+
+    lateinit var iCustomInterface: ICustomInterface
 
     init {
         iCustomInterface = context as ICustomInterface
     }
-    fun setData(items:List<localSong>){
+
+    fun setData(items: List<localSong>) {
         recyclerItemValues = items
         notifyDataSetChanged()
     }
@@ -33,11 +36,14 @@ class localSongsAdapter(private val context: Context):RecyclerView.Adapter<local
         return RecyclerViewItemHolder(itemView)
     }
 
-
-     override fun onBindViewHolder(myRecyclerViewItemHolder: RecyclerViewItemHolder, position: Int) {
+    override fun onBindViewHolder(myRecyclerViewItemHolder: RecyclerViewItemHolder, position: Int) {
         val item = recyclerItemValues[position]
         myRecyclerViewItemHolder.songNameSearchTV.text = item.name
-        myRecyclerViewItemHolder.artistNameSearchTV .text = item.artist
+        myRecyclerViewItemHolder.artistNameSearchTV.text = item.artist
+
+        myRecyclerViewItemHolder.playPauseButton.setOnClickListener {
+            iCustomInterface.onPlayPauseClick(item, position, myRecyclerViewItemHolder.playPauseButton)
+        }
 
         myRecyclerViewItemHolder.parentLayout.setOnLongClickListener {
             iCustomInterface.itemSelectedWithLongClick(item)
@@ -50,15 +56,9 @@ class localSongsAdapter(private val context: Context):RecyclerView.Adapter<local
     }
 
     inner class RecyclerViewItemHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        lateinit var parentLayout: LinearLayout
-        lateinit var artistNameSearchTV: TextView
-        lateinit var songNameSearchTV: TextView
-
-        init {
-            parentLayout = itemView.findViewById(R.id.itemLayout)
-            artistNameSearchTV = itemView.findViewById(R.id.artistNameSearchTV)
-            songNameSearchTV = itemView.findViewById(R.id.songNameSearchTV)
-
-        }
+        var parentLayout: LinearLayout = itemView.findViewById(R.id.itemLayout)
+        var artistNameSearchTV: TextView = itemView.findViewById(R.id.artistNameSearchTV)
+        var songNameSearchTV: TextView = itemView.findViewById(R.id.songNameSearchTV)
+        var playPauseButton: ImageButton = itemView.findViewById(R.id.playPauseButton)
     }
 }

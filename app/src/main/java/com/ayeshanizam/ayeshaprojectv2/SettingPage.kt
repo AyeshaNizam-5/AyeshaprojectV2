@@ -67,6 +67,12 @@ class SettingPage : AppCompatActivity() {
                         finish()
                         true
                     }
+                    R.id.favouritesNavbtn -> {
+                        val intent = Intent(this, ExistingSongsActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                        true
+                    }
                     else -> {
                         true
                     }
@@ -75,7 +81,6 @@ class SettingPage : AppCompatActivity() {
                 throw e
             }
         }
-
     }
 
 
