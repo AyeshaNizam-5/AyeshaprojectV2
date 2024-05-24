@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:text="Register"
+        android:text="@string/registerTitle"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold" />
@@ -22,7 +22,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Username"
+        android:hint="@string/emailHint"
         app:endIconMode="clear_text">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -36,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="Password"
+        android:hint="@string/passwordHint"
         app:endIconMode="password_toggle">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -52,8 +52,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:backgroundTint="#03A9F4"
-        android:text="Register"
-        android:textColor="#FFFFFF" />
+        android:text="@string/registerTitle"
+        android:textColor="#FFFFFF"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/loginButton"
@@ -61,6 +62,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:backgroundTint="#515151"
-        android:text="Login Instead!"
+        android:text="@string/loginInstead"
         android:textColor="@color/white" />
 </LinearLayout>

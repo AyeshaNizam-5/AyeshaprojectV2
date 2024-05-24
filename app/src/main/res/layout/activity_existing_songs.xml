@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="9dp"
-        android:text="Select any song to play"
+        android:text="@string/existingSongsTitle"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/localSongsRecyclerView"
