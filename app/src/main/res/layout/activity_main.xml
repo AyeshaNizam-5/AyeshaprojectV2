@@ -10,8 +10,8 @@
 
     <EditText
         android:id="@+id/etSearchBar"
-        android:layout_width="272dp"
-        android:layout_height="36dp"
+        android:layout_width="268dp"
+        android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="19dp"
         android:layout_marginBottom="17dp"
