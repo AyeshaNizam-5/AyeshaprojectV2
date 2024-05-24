@@ -15,6 +15,7 @@ import com.ayeshanizam.ayeshaprojectv2.databinding.ActivityExistingSongsBinding
 import com.ayeshanizam.ayeshaprojectv2.songsDB.localSong
 import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
+import android.view.WindowManager
 import androidx.core.view.GestureDetectorCompat
 
 class ExistingSongsActivity : AppCompatActivity(), localSongsAdapter.ICustomInterface {
@@ -32,6 +33,13 @@ class ExistingSongsActivity : AppCompatActivity(), localSongsAdapter.ICustomInte
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Hiding title bar using code
+        supportActionBar?.hide()
+        // Hiding the status bar
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
         binding = ActivityExistingSongsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         prepareData()

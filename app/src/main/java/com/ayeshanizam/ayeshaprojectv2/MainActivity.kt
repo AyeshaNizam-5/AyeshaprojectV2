@@ -8,6 +8,7 @@ import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
 import com.ayeshanizam.ayeshaprojectv2.databinding.ActivityMainBinding
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
@@ -61,6 +62,13 @@ class MainActivity : AppCompatActivity(),CustomRecyclerViewAdapter.ICustomInterf
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+        // Hiding title bar using code
+        supportActionBar?.hide()
+        // Hiding the status bar
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val sharedPrefCurrent = getSharedPreferences(com.ayeshanizam.ayeshaprojectv2.constants.Constants.SHARED_PREFS, Context.MODE_PRIVATE)
